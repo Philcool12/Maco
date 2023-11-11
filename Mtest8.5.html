@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>flip card quiz</title>
+        <style>
+            .lesson {
+                padding: 20px;
+                text-align: center;
+                display: none;
+                background-color: #97c1a9;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            td, th {
+                border: 1px solid black;
+                text-align: left;
+                padding: 8px;
+            }
+
+            th {
+                background-color: #f2f2f2;
+            }
+
+            body {
+                font-family: arial, sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                background-color: #f0f0f0;
+            }
+
+            .container {
+                width: 90%;
+                max-width: 300px;
+                background-color: #ffd700;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                border-radius: 10px;
+                overflow: hidden;
+            }
+
+            .landing-page {
+                padding: 20px;
+                text-align: center;
+                background-color: #47927e;
+            }
+
+            .question, .answer {
+                padding: 20px;
+                text-align: center;
+                display: none;
+            }
+
+            .question {
+                background-color: #f88c29;
+            }
+
+            .answer {
+                background-color: #ffc434;
+            }
+
+	    .correct { 
+		background-color: #f88c29; 
+	    }
+
+	    .flip { 
+		transition: transform 0.5s; 
+		transform: rotateY(180deg); 
+		background-color: #f88c29; 
+	    }
+
+            .lesson { 
+		background-color: #437085; 
+		color: #FFE34F;
+            }
+
+            button {
+                width: 100%;
+                padding: 10px;
+                background-color: #ffe34f;
+                color: black;
+                font-size: 16px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                margin-top: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="landing-page">
+                <h2>learning macedonian</h2>
+                <h3>click on the topic below to test yourself</h3>
+                <button onclick="startQuiz('nouns')">nouns</button>
+                <button onclick="startQuiz('adjectives')">adjectives</button>
+                <button onclick="startQuiz('verbs')">verbs</button>
+                <h3>click on the topic below to view the lesson</h3>
+                <button onclick="showLesson('noun')">noun lesson</button>
+                <button onclick="showLesson('adjective')">adjective lesson</button>
+                <button onclick="showLesson('verb')">verb lesson</button>
+            </div>
+            <div class="lesson" id="nounLesson">
+                <h3>Noun Lesson</h3>
+                <p>This is the translation of the relevant words for this section:</p>
+                <table>
+
+ 			<tr><td>avtobus</td><td>bus</td></tr>
+			<tr><td>brat</td><td>brother</td></tr>
+			<tr><td>voda</td><td>water</td></tr>
+			<tr><td>grad</td><td>city</td></tr>
+			<tr><td>den</td><td>day</td></tr>
+			<tr><td>ǵerdan</td><td>necklace</td></tr>
+			<tr><td>ezero</td><td>lake</td></tr>
+			<tr><td>žaba</td><td>frog</td></tr>
+			<tr><td>zemja</td><td>earth</td></tr>
+			<tr><td>dzvezda</td><td>star</td></tr>
+			<tr><td>igra</td><td>game</td></tr>
+			<tr><td>jabolko</td><td>apple</td></tr>
+			<tr><td>kuća</td><td>house</td></tr>
+			<tr><td>leb</td><td>bread</td></tr>
+			<tr><td>ljubov</td><td>love</td></tr>
+			<tr><td>meso</td><td>meat</td></tr>
+			<tr><td>nos</td><td>nose</td></tr>
+			<tr><td>njiva</td><td>field</td></tr>
+			<tr><td>oblak</td><td>cloud</td></tr>
+			<tr><td>pat</td><td>road</td></tr>
+			<tr><td>reka</td><td>river</td></tr>
+			<tr><td>sneg</td><td>snow</td></tr>
+			<tr><td>trava</td><td>grass</td></tr>
+			<tr><td>ḱerka</td><td>daughter</td></tr>
+			<tr><td>učilište</td><td>school</td></tr>
+			<tr><td>film</td><td>film</td></tr>
+			<tr><td>hrana</td><td>food</td></tr>
+			<tr><td>cvet</td><td>flower</td></tr>
+			<tr><td>čaša</td><td>cup</td></tr>
+			<tr><td>džem</td><td>jam</td></tr>
+			<tr><td>šuma</td><td>forest</td></tr>
+
+                </table>
+                <button onclick="goBackToLandingPage()">Back to Home</button>
+            </div>
+            <div class="lesson" id="adjectiveLesson">
+                <h3>Adjective Lesson</h3>
+                <p>This is the translation of the relevant words for this section:</p>
+                <table>
+                    <tr>
+                        <th>English</th>
+                        <th>Macedonian</th>
+                    </tr>
+                    <tr>
+                        <td>bus</td>
+                        <td>avtobus</td>
+                    </tr>
+                    <tr>
+                        <td>brother</td>
+                        <td>brat</td>
+                    </tr>
+                    <tr>
+                        <td>water</td>
+                        <td>voda</td>
+                    </tr>
+                </table>
+                <button onclick="goBackToLandingPage()">Back to Home</button>
+            </div>
+            <div class="lesson" id="verbLesson">
+                <h3>Verb Lesson</h3>
+                <p>This is the translation of the relevant words for this section:</p>
+                <table>
+                    <tr>
+                        <th>English</th>
+                        <th>Macedonian</th>
+                    </tr>
+                    <tr>
+                        <td>bus</td>
+                        <td>avtobus</td>
+                    </tr>
+                    <tr>
+                        <td>brother</td>
+                        <td>brat</td>
+                    </tr>
+                    <tr>
+                        <td>water</td>
+                        <td>voda</td>
+                    </tr>
+                </table>
+                <button onclick="goBackToLandingPage()">Back to Home</button>
+            </div>
+            <div class="question">
+                <h3>word:</h3>
+                <p id="word"></p>
+            </div>
+            <div class="answer">
+                <h3>select the correct translation:</h3>
+                <div id="options">
+                    <button onclick="checkAnswer(0)">option 1</button>
+                    <button onclick="checkAnswer(1)">option 2</button>
+                    <button onclick="checkAnswer(2)">option 3</button>
+                </div>
+                <p id="result" style="display: none;"></p>
+                <div id="counters">
+                    <span>
+                        correct: <span id="correctCounter">0</span>
+                    </span>
+                    <span>
+                        | incorrect: <span id="incorrectCounter">0</span>
+                    </span>
+                </div>
+                <button id="restartButton" onclick="restartQuiz()" style="display: none;">restart quiz</button>
+		<button onclick="goBackToLandingPage()">Back to Home</button>
+            </div>
+
+        </div>
+        <script>
+            const word = document.getElementById("word");
+            const options = document.getElementById("options").getElementsByTagName("button");
+            const result = document.getElementById("result");
+            const correctCounter = document.getElementById("correctCounter");
+            const incorrectCounter = document.getElementById("incorrectCounter");
+            const restartButton = document.getElementById("restartButton");
+
+            const nounQuestions = [ 
+		{ question: "avtobus", answer: "bus" },
+		{ question: "brat", answer: "brother" },
+		{ question: "voda", answer: "water" },
+		{ question: "grad", answer: "city" },
+		{ question: "den", answer: "day" },
+		{ question: "ǵerdan", answer: "necklace" },
+		{ question: "ezero", answer: "lake" },
+		{ question: "žaba", answer: "frog" },
+		{ question: "zemja", answer: "earth" },
+		{ question: "dzvezda", answer: "star" },
+		{ question: "igra", answer: "game" },
+		{ question: "jabolko", answer: "apple" },
+		{ question: "kuća", answer: "house" },
+		{ question: "leb", answer: "bread" },
+		{ question: "ljubov", answer: "love" },
+		{ question: "meso", answer: "meat" },
+		{ question: "nos", answer: "nose" },
+		{ question: "njiva", answer: "field" },
+		{ question: "oblak", answer: "cloud" },
+		{ question: "pat", answer: "road" },
+		{ question: "reka", answer: "river" },
+		{ question: "sneg", answer: "snow" },
+		{ question: "trava", answer: "grass" },
+		{ question: "ḱerka", answer: "daughter" },
+		{ question: "učilište", answer: "school" },
+		{ question: "film", answer: "film" },
+		{ question: "hrana", answer: "food" },
+		{ question: "tsvet", answer: "flower" },
+		{ question: "čaša", answer: "cup" },
+		{ question: "džem", answer: "jam" },
+		{ question: "šuma", answer: "forest" } ]
+            ;
+
+            const adjectiveQuestions = [ 
+		{ question: "tsrveno", answer: "red" },
+		{ question: "sino", answer: "blue" },
+		{ question: "zeleno", answer: "green" },
+		{ question: "džolto", answer: "yellow" },
+		{ question: "tsrno", answer: "black" },
+		{ question: "belo", answer: "white" },
+		{ question: "portokalovo", answer: "orange" },
+		{ question: "kafeavo", answer: "brown" },
+                { question: "dobar", answer: "good" },
+		{ question: "losh", answer: "bad" },
+		{ question: "golem", answer: "big" },
+		{ question: "mal", answer: "small" },
+		{ question: "nov", answer: "new" },
+		{ question: "star", answer: "old" },
+		{ question: "dolg", answer: "long" },
+		{ question: "kratok", answer: "short" },
+		{ question: "visok", answer: "tall" },
+		{ question: "nizok", answer: "short" },
+		{ question: "teshok", answer: "heavy" },
+		{ question: "lesen", answer: "light" },
+		{ question: "brz", answer: "fast" },
+		{ question: "spor", answer: "slow" },
+		{ question: "topol", answer: "hot" },
+		{ question: "laden", answer: "cold" },
+		{ question: "mek", answer: "soft" },
+		{ question: "tvrd", answer: "hard" },
+		{ question: "silen", answer: "quiet" },
+		{ question: "slab", answer: "weak" } ]
+
+            ;
+
+            const verbQuestions = [
+		{ question: 'slab', answer: 'weak'}, 
+		{ question: 'dobar', answer: 'good'}, 
+		{ question: 'losh', answer: 'bad'}]
+	    ;
+            let questions;
+            let correctCount = 0;
+            let incorrectCount = 0;
+            let questionCount = 0;
+            let currentQuestion = {};
+            function startQuiz(quizType) {
+                document.querySelector('.landing-page').style.display = 'none';
+
+                document.querySelector('.question').style.display = 'block';
+                document.querySelector('.answer').style.display = 'block';
+                switch (quizType) {
+                case 'nouns':
+                    questions = [...nounQuestions];
+                    break;
+                case 'adjectives':
+                    questions = [...adjectiveQuestions];
+                    break;
+                case 'verbs':
+                    questions = [...verbQuestions];
+                    break;
+                }
+                displayQuestion();
+            }
+            function getRandomQuestion() {
+                const index = Math.floor(Math.random() * questions.length);
+                const question = questions[index];
+                questions.splice(index, 1);
+                return question;
+            }
+            function flipQuestionAndAnswer(questionObj) {
+                return {
+                    question: questionObj.answer,
+                    answer: questionObj.question
+                };
+            }
+            function getIncorrectOptions(isFlipped) {
+                const incorrectAnswers = nounQuestions.concat(adjectiveQuestions, verbQuestions).filter(q=>q.answer !== currentQuestion.answer).map(q=>isFlipped ? q.question : q.answer);
+                const shuffledIncorrectAnswers = incorrectAnswers.sort(()=>Math.random() - 0.5);
+                return [shuffledIncorrectAnswers[0], shuffledIncorrectAnswers[1]];
+            }
+            function displayQuestion() {
+                if (questions.length === 0) {
+                    questions = [...nounQuestions, ...adjectiveQuestions, ...verbQuestions];
+                }
+                let isFlipped = false;
+                if (Math.random() < 0.5) {
+                    currentQuestion = getRandomQuestion();
+                } else {
+                    currentQuestion = flipQuestionAndAnswer(getRandomQuestion());
+                    isFlipped = true;
+                }
+                word.innerHTML = currentQuestion.question;
+                const correctAnswerPosition = Math.floor(Math.random() * 3);
+                options[correctAnswerPosition].textContent = currentQuestion.answer;
+                const incorrectOptions = getIncorrectOptions(isFlipped);
+                let incorrectIndex = 0;
+                for (let i = 0; i < options.length; i++) {
+                    if (i !== correctAnswerPosition) {
+                        options[i].textContent = incorrectOptions[incorrectIndex];
+                        incorrectIndex++;
+                    }
+                }
+            }
+
+
+
+	    function checkAnswer(optionIndex) { 
+		if (options[optionIndex].textContent === currentQuestion.answer) { 
+			result.innerHTML = "Great job!";  
+			result.style.color = "green"; 
+			correctCount++; 
+			correctCounter.innerHTML = correctCount; 
+		} else { 
+			result.innerHTML = "Incorrect"; 
+			result.style.color = "red"; 
+			incorrectCount++; 
+			incorrectCounter.innerHTML = incorrectCount; 
+		} 
+		
+		for (let i = 0; i < options.length; i++) { 
+			if (options[i].textContent === currentQuestion.answer) { 
+				options[i].classList.add('flip'); break; 
+				} 
+			} result.style.display = "block"; 
+				questionCount++; 
+				if (questionCount < 20) { 
+					setTimeout(() => { 
+						result.style.display = "none"; 
+
+
+			for (let i = 0; i < options.length; i++) { 
+				if (options[i].classList.contains('flip')) {
+					options[i].classList.remove('flip'); break; 
+					} 
+				} displayQuestion(); }, 2000); } else { setTimeout(() => { endQuiz(); }, 2000); } }
+
+
+
+
+            function endQuiz() {
+                result.innerHTML = `Congratulations! You got ${correctCount} out of ${questionCount} right.`;
+                result.style.color = "black";
+                word.style.display = "none";
+                for (let i = 0; i < options.length; i++) {
+                    options[i].style.display = "none";
+                }
+                restartButton.style.display = "block";
+            }
+            function restartQuiz() {
+                questionCount = 0;
+                correctCount = 0;
+                incorrectCount = 0;
+                correctCounter.innerHTML = correctCount;
+                incorrectCounter.innerHTML = incorrectCount;
+                word.style.display = "block";
+                for (let i = 0; i < options.length; i++) {
+                    options[i].style.display = "block";
+                }
+                restartButton.style.display = "none";
+                result.style.display = "none";
+                displayQuestion();
+            }
+
+            function showLesson(lesson) {
+
+                document.getElementById(lesson + 'Lesson').style.display = 'block';
+                document.querySelector('.landing-page').style.display = 'none';
+            }
+
+            function goBackToLandingPage() { 
+		restartQuiz();
+		const lessons = document.getElementsByClassName("lesson"); 
+		for (let i = 0; i < lessons.length; i++) { 
+			lessons[i].style.display = 'none'; 
+		} document.querySelector('.landing-page').style.display = 'block'; 
+                  document.querySelector('.question').style.display = 'none';
+                  document.querySelector('.answer').style.display = 'none';
+            }
+
+
+
+
+        </script>
+    </body>
+</html>
